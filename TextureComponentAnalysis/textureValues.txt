@@ -1,0 +1,72 @@
+file = 'C:\Users\YASARA\Desktop\red\leaf\leafdata2.xlsx';
+sheet = 1;
+srcFiles = dir('C:\Users\YASARA\Desktop\red\leaf\*.jpg');  % the folder in which ur images exists
+for i = 1 : length(srcFiles)
+    filename = strcat('C:\Users\YASARA\Desktop\red\leaf\',srcFiles(i).name);
+    Ix = imread(filename);
+    I = rgb2gray(Ix);
+    %binarize usin threshold
+    BW = imbinarize(I,0.1);
+    %get complement image
+    IMComp = imcomplement(BW);
+    R = Ix(:,:,1); 
+    G = Ix(:,:,2);
+    B = Ix(:,:,3);
+    RM=uint8(IMComp).*R;
+    GM=uint8(IMComp).*G;
+    BM=uint8(IMComp).*B;
+    BRmvIm=cat(3,RM,GM,BM);
+    IRmv = rgb2gray(BRmvIm);
+    Entropy = entropy(IRmv);s%=================================
+Im3=im2bw(Ix);
+Im4=imcomplement(Im3);
+[x,y,v] = find(Im4);
+[xrect,yrect,area,perimeter] = minboundrect(x,y);
+k=size(Ix);
+totArea=k(1)*k(2);
+
+rectArea=area;%===========================================
+ObjAra=bwarea(IMComp);%=========================================
+MinRectRatio=ObjAra/area;%=====================================
+L=bwlabel(BW, 8);
+stats = regionprops(L, I, 'MeanIntensity');
+MeanIntensityOfFullImage=stats(1);%==================================
+    xlsappend(file,{Entropy,MinRectRatio,ObjAra,MeanIntensityOfFullImage.MeanIntensity,rectArea},sheet);
+end;
+%======================================================================================================
+
+file = 'C:\Users\YASARA\Desktop\red\stem\stemdata2.xlsx';
+sheet = 1;
+srcFiles = dir('C:\Users\YASARA\Desktop\red\stem\*.jpg');  % the folder in which ur images exists
+for i = 1 : length(srcFiles)
+    filename = strcat('C:\Users\YASARA\Desktop\red\stem\',srcFiles(i).name);
+    Ix = imread(filename);
+    I = rgb2gray(Ix);
+    %binarize usin threshold
+    BW = imbinarize(I,0.1);
+    %get complement image
+    IMComp = imcomplement(BW);
+    R = Ix(:,:,1); 
+    G = Ix(:,:,2);
+    B = Ix(:,:,3);
+    RM=uint8(IMComp).*R;
+    GM=uint8(IMComp).*G;
+    BM=uint8(IMComp).*B;
+    BRmvIm=cat(3,RM,GM,BM);
+    IRmv = rgb2gray(BRmvIm);
+    Entropy = entropy(IRmv);s%=================================
+Im3=im2bw(Ix);
+Im4=imcomplement(Im3);
+[x,y,v] = find(Im4);
+[xrect,yrect,area,perimeter] = minboundrect(x,y);
+k=size(Ix);
+totArea=k(1)*k(2);
+rectArea=area;%===========================================
+ObjAra=bwarea(IMComp);%=========================================
+MinRectRatio=ObjAra/area;%=====================================
+L=bwlabel(BW, 8);
+stats = regionprops(L, I, 'MeanIntensity');
+MeanIntensityOfFullImage=stats(1);%==================================
+    xlsappend(file,{Entropy,MinRectRatio,ObjAra,MeanIntensityOfFullImage.MeanIntensity,rectArea},sheet);
+end;
+
