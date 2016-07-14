@@ -1,0 +1,21 @@
+imagefiles = dir('C:\Users\YASARA\Desktop\red\stem\*.jpg');       
+nfiles = length(imagefiles); 
+k=1;
+for ii=1:nfiles
+   currentfilename = imagefiles(ii).name;
+    filename = strcat('C:\Users\YASARA\Desktop\red\stem\',currentfilename);
+   RGB1 = imread(filename);
+%BW1 = rgb2gray(RGB1)>180;
+BW1 = im2bw(RGB1,0.1);
+[B1,L1,N1,A1] = bwboundaries(BW1);
+for idy = 2:length(B1)
+boundary1 = B1{idy};
+original1 = RGB1( ...
+     min(boundary1(:,1)):max(boundary1(:,1)),... %the rows
+     min(boundary1(:,2)):max(boundary1(:,2)),... %the cols
+     :);
+s = strcat(int2str(k),'.jpg');
+k=k+1;
+imwrite(original1,s);
+end;
+end;
