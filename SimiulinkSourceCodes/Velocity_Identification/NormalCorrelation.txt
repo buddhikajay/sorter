@@ -1,0 +1,21 @@
+
+im1   = rgb2gray(imread('ppp11.png'));
+im2 = rgb2gray(imread('ppp22.png'));
+imshowpair(im1,im2,'montage');
+c = normxcorr2(im2,im1);
+figure, surf(c), shading flat;
+[ypeak, xpeak] = find(c==max(c(:)));
+yoffSet = ypeak-size(im2,1);
+xoffSet = xpeak-size(im2,2);
+hFig = figure;
+hAx  = axes;
+imshow(im1,'Parent', hAx);
+imrect(hAx, [xoffSet+1, yoffSet+1, size(im2,2), size(im2,1)]);
+time=2;
+display(ypeak);
+display(xpeak);
+display(yoffSet);
+display(xoffSet);
+veloity=yoffSet/time;
+display(veloity);
+//===================
