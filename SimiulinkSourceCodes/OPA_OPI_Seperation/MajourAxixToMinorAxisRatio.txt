@@ -1,0 +1,42 @@
+Im=imread('DSC_1234.jpg');
+I=rgb2gray(Im);
+coder.extrinsic('graythresh');
+coder.extrinsic('im2bw');
+level = graythresh(I);
+BW = im2bw(I,level);
+L=double(I);
+coder.extrinsic('bwlabeln');
+NUM=1;
+BW2=imcomplement(BW);
+[L, NUM] = bwlabeln(BW2);
+area=1;
+n=1;
+R1=Im(:,:,1);
+R2=Im(:,:,2);
+R3=Im(:,:,3);
+AA=(zeros(8,1));
+
+i=1;
+for n=1:NUM
+    [r, c] = find(L==n);
+    %if (max(c)~= min(c))&&(max(r)~= min(r))
+    if ((max(c)-min(c))>50)&&((max(r)-min(r))>50)
+      Obj = Im( min(r):max(r),min(c):max(c),:);
+      IObj=rgb2gray(Obj);
+      ObjBW=im2bw(IObj,level);
+      s = regionprops('table',ObjBW,'MajorAxisLength','MinorAxisLength');    
+      Arr=(table2array(s));
+      Arr2=sort(Arr,'descend');
+      AA(i)=(Arr2(2,1))/(Arr2(2,2));       
+        if (AA(i)>k)
+          R1(L==n)=0; 
+          R2(L==n)=0;            
+          R3(L==n)=0;
+        end
+        i=i+1;
+    end
+end
+II=Im;
+II=cat(3,R1,R2,R3);
+ImOut=II;
+imshow(ImOut);
