@@ -1,0 +1,109 @@
+<deployment-project plugin="plugin.apptool" plugin-version="1.0">
+  <configuration build-checksum="2040366685" file="C:\Users\YASARA\Desktop\FYPTraningModule\App1.prj" location="C:\Users\YASARA\Desktop\FYPTraningModule" name="App1" target="target.mlapps" target-name="Package App">
+    <param.appname>App1</param.appname>
+    <param.authnamewatermark />
+    <param.email />
+    <param.company />
+    <param.icon />
+    <param.icons />
+    <param.summary />
+    <param.description />
+    <param.screenshot />
+    <param.version>1.0</param.version>
+    <param.products.name />
+    <param.products.id />
+    <param.products.version />
+    <param.platforms />
+    <param.output>C:\Users\YASARA\Desktop\FYPTraningModule</param.output>
+    <param.guid>691e500e-e894-4695-9e13-13e97760b31d</param.guid>
+    <unset>
+      <param.authnamewatermark />
+      <param.email />
+      <param.company />
+      <param.icon />
+      <param.icons />
+      <param.summary />
+      <param.description />
+      <param.screenshot />
+      <param.version />
+      <param.products.name />
+      <param.products.id />
+      <param.products.version />
+      <param.platforms />
+      <param.output />
+    </unset>
+    <fileset.main>
+      <file>${PROJECT_ROOT}\App1.mlapp</file>
+    </fileset.main>
+    <fileset.depfun>
+      <file>${PROJECT_ROOT}\BackgroundRemove.m</file>
+      <file>${PROJECT_ROOT}\colorspace.m</file>
+      <file>${PROJECT_ROOT}\Completed.fig</file>
+      <file>${PROJECT_ROOT}\Completed.m</file>
+      <file>${PROJECT_ROOT}\deleteoutliers.m</file>
+      <file>${PROJECT_ROOT}\GetAccuracyHistFifNorm.m</file>
+      <file>${PROJECT_ROOT}\getCombinedColorComponent.m</file>
+      <file>${PROJECT_ROOT}\getWeights.m</file>
+      <file>${PROJECT_ROOT}\ImageDisplay.fig</file>
+      <file>${PROJECT_ROOT}\ImageDisplay.m</file>
+      <file>${PROJECT_ROOT}\InterX.m</file>
+      <file>${PROJECT_ROOT}\LDA.m</file>
+      <file>${PROJECT_ROOT}\ObjectSeperationColor.m</file>
+      <file>${PROJECT_ROOT}\ReadAllColorVals.m</file>
+      <file>${PROJECT_ROOT}\StatDisplay.fig</file>
+      <file>${PROJECT_ROOT}\StatDisplay.m</file>
+      <file>${PROJECT_ROOT}\WriteFile.m</file>
+      <file>${PROJECT_ROOT}\WriteFileWeights.m</file>
+    </fileset.depfun>
+    <fileset.resources />
+    <fileset.package />
+    <build-deliverables>
+      <file location="C:\Users\YASARA\Desktop" name="FYPTraningModule" optional="false">C:\Users\YASARA\Desktop\FYPTraningModule</file>
+    </build-deliverables>
+    <workflow />
+    <matlab>
+      <root>C:\Program Files\MATLAB\R2016a</root>
+      <toolboxes>
+        <toolbox name="fixedpoint" />
+        <toolbox name="matlabcoder" />
+        <toolbox name="matlabhdlcoder" />
+        <toolbox name="embeddedcoder" />
+      </toolboxes>
+      <toolbox>
+        <fixedpoint>
+          <enabled>true</enabled>
+        </fixedpoint>
+      </toolbox>
+      <toolbox>
+        <matlabcoder>
+          <enabled>true</enabled>
+        </matlabcoder>
+      </toolbox>
+      <toolbox>
+        <matlabhdlcoder>
+          <enabled>true</enabled>
+        </matlabhdlcoder>
+      </toolbox>
+      <toolbox>
+        <embeddedcoder>
+          <enabled>true</enabled>
+        </embeddedcoder>
+      </toolbox>
+    </matlab>
+    <platform>
+      <unix>false</unix>
+      <mac>false</mac>
+      <windows>true</windows>
+      <win2k>false</win2k>
+      <winxp>false</winxp>
+      <vista>false</vista>
+      <linux>false</linux>
+      <solaris>false</solaris>
+      <osver>6.2</osver>
+      <os32>false</os32>
+      <os64>true</os64>
+      <arch>win64</arch>
+      <matlab>true</matlab>
+    </platform>
+  </configuration>
+</deployment-project>
