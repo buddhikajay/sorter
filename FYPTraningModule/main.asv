@@ -1,0 +1,46 @@
+fileID = fopen('Config.txt','r');
+A=textscan(fileID, '%s');
+k=A{1}(2);
+th=str2num(k{1});
+%[kL,outFileL]=ObjectSeperationColor('C:\Users\YASARA\Desktop\FYPTraningModule\testInLeaf','L',1000);
+%[kS,outFileS]=ObjectSeperationColor('C:\Users\YASARA\Desktop\FYPTraningModule\testInStem','S',1000);
+%[L1,L2,L3 ]=ReadColorVals( outFileL,kL );
+%[S1,S2,S3 ]=ReadColorVals( outFileS,kS); 
+%W=getWeights(L1,L2,S1,S2);
+%[ Lout,Sout ]=getCombinedColorComponent(W,L1,L2,S1,S2);
+%[ accuracy1,Th1]=GetAccuracy(double(L1),double(S1));
+%[ accuracy2,Th2]=GetAccuracy(double(L2),double(S2));
+%[ accuracy3,Th3]=GetAccuracy(double(L3),double(S3));
+%WriteFile( Th1,Th2,Th3 );
+%WriteFileWeights(W);
+%[ accuracy,Th]=GetAccuracy(double(Lout),double(Sout));
+
+LC=ReadAllColorVals( outFileL,kL );
+SC=ReadAllColorVals( outFileS,kS); 
+x = ones(1,24);
+for n = 1:24
+     cleanedLC=deleteoutliers(LC(:,:,n),0.1);
+     cleanedSC=deleteoutliers(SC(:,:,n),0.1);
+     x(n) =GetAccuracy(double(cleanedLC),double(cleanedSC));  
+end
+[maxVal1,Idx1]=max(x);
+L1=LC(:,:,Idx1);
+S1=SC(:,:,Idx1);
+cleanedLC1=deleteoutliers(L1,0.1);
+cleanedSC1=deleteoutliers(S1,0.1);
+x(Idx1) = 0;
+[maxVal2,Idx2]=max(x);
+L2=LC(:,:,Idx2);
+S2=SC(:,:,Idx2);
+cleanedLC2=deleteoutliers(L2,0.1);
+cleanedSC2=deleteoutliers(S2,0.1);
+minL=min([length(cleanedLC1),length(cleanedLC2)]);
+cleanedLC1 = cleanedLC1(1:minL);
+cleanedLC2 = cleanedLC2(1:minL);
+minS=min([length(cleanedSC1),length(cleanedSC2)]);
+cleanedSC1 = cleanedSC1(1:minS);
+cleanedSC2 = cleanedSC2(1:minS);
+W=getWeights(cleanedLC1,cleanedLC2,cleanedSC1,cleanedSC2);
+[ Lout,Sout ]=getCombinedColorComponent(W,L1,L2,S1,S2);
+%[ accuracy,Th]=GetAccuracy(double(Lout),double(Sout));
+accuracy=GetAccuracy2(double(Lout),double(Sout));
